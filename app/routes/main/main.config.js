@@ -9,7 +9,7 @@ function mainConfig($stateProvider, $urlRouterProvider) {
     url: '',
     controller: 'mainController',
     controllerAs: '$ctrl',
-    template: require('./main.jade')
+    template: require('./main.pug')
   });
 }
 

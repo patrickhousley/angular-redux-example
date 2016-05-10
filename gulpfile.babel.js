@@ -6,7 +6,7 @@ import path from 'path';
 import del from 'del';
 import webpack from 'webpack';
 import server from 'gulp-express';
-import jade from 'gulp-jade';
+import pug from 'gulp-pug';
 
 // Module Imports
 import webpackConfig from './webpack.config';
@@ -17,14 +17,14 @@ import webpackConfig from './webpack.config';
 
 gulp.task('default', ['clean:dist'], () => {
   runSequence(
-    ['jade:build', 'styles:build'],
-    ['express', 'webpack:watch', 'jade:watch', 'styles:watch']
+    ['pug:build', 'styles:build'],
+    ['express', 'webpack:watch', 'pug:watch', 'styles:watch']
   );
 });
 
 gulp.task('build', ['clean:dist'], (cb) => {
   runSequence(
-    ['webpack:build', 'jade:build', 'styles:build'],
+    ['webpack:build', 'pug:build', 'styles:build'],
     cb
   );
 });
@@ -34,21 +34,21 @@ gulp.task('clean:dist', (callback) => {
 });
 
 /******************************************************************************
-* Jade Indexes Section
+* pug Indexes Section
 *******************************************************************************/
 
-let jadeIndexes = [
-  path.join(__dirname, 'app', 'app.jade')
+let pugIndexes = [
+  path.join(__dirname, 'app', 'app.pug')
 ];
 
-gulp.task('jade:build', () => {
-  return gulp.src(jadeIndexes)
-  .pipe(jade())
+gulp.task('pug:build', () => {
+  return gulp.src(pugIndexes)
+  .pipe(pug())
   .pipe(gulp.dest(path.join(__dirname, 'dist')));
 });
 
-gulp.task('jade:watch', () => {
-  gulp.watch(jadeIndexes, ['jade:build']);
+gulp.task('pug:watch', () => {
+  gulp.watch(pugIndexes, ['pug:build']);
 });
 
 /******************************************************************************

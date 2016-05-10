@@ -15,7 +15,7 @@ let webpackConfig = {
     preLoaders: [],
     loaders: [
       { test: /\.jsx?$/, loader: 'ng-annotate-loader!babel-loader' },
-      { test: /\.jade$/, loader: 'jade' },
+      { test: /\.pug$/, loader: 'pug-html-loader' },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
     ],
     postLoaders: []
